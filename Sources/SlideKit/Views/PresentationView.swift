@@ -5,7 +5,7 @@
 //  Created by Junnosuke Matsumoto on 2022/08/24.
 //
 
-#if os(macOS)
+#if canImport(AppKit)
 import AppKit
 #endif
 import SwiftUI
@@ -15,14 +15,14 @@ public struct PresentationView<Content>: View where Content: View {
     private let slideSize: CGSize
     private let content: () -> Content
 
-#if os(macOS)
+#if canImport(AppKit)
     private let windowEventHandler: PresentationWindowEventHandler
 #endif
 
     public init(slideSize: CGSize, content: @escaping () -> Content) {
         self.slideSize = slideSize
         self.content = content
-#if os(macOS)
+#if canImport(AppKit)
         self.windowEventHandler = PresentationWindowEventHandler(slideSize: slideSize)
 #endif
     }
@@ -33,7 +33,7 @@ public struct PresentationView<Content>: View where Content: View {
             SlideScreen(slideSize: slideSize) {
                 content()
             }
-#if os(macOS)
+#if canImport(AppKit)
             .aspectRatio(slideSize, contentMode: .fit)
             .clipped()
 #else
@@ -43,7 +43,7 @@ public struct PresentationView<Content>: View where Content: View {
 
         }
         .ignoresSafeArea()
-#if os(macOS)
+#if canImport(AppKit)
         .configureWindow { window in
             window?.delegate = windowEventHandler
             window?.standardWindowButton(.zoomButton)?.isHidden = true
@@ -54,7 +54,7 @@ public struct PresentationView<Content>: View where Content: View {
     }
 }
 
-#if os(macOS)
+#if canImport(AppKit)
 public class PresentationWindowEventHandler: NSObject, NSWindowDelegate {
     public let slideSize: CGSize
 

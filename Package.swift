@@ -6,13 +6,13 @@ import CompilerPluginSupport
 
 let package = Package(
     name: "SlideKit",
-    platforms: [.iOS(.v15), .macOS(.v12)],
+    platforms: [.iOS(.v16), .macOS(.v13), .tvOS(.v16), .visionOS(.v1)],
     products: [
         .library(name: "SlideKit", targets: ["SlideKit"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0"),
+        .package(url: "https://github.com/fromkk/Splash.git", branch: "main"),
         .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0"),
     ],
     targets: [
@@ -20,7 +20,7 @@ let package = Package(
             name: "SlideKit",
             dependencies: [
                 "SlideKitMacros",
-                "Splash"
+                .product(name: "Splash", package: "Splash"),
             ]
         ),
         .macro(

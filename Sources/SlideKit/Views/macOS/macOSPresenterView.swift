@@ -5,7 +5,7 @@
 //  Created by Junnosuke Matsumoto on 2022/08/31.
 //
 
-#if os(macOS)
+#if canImport(AppKit)
 import Combine
 import Foundation
 import SwiftUI

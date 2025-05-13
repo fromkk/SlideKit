@@ -4,7 +4,7 @@
 //
 //  Created by Junnosuke Matsumoto on 2022/09/21.
 //
-#if os(macOS)
+#if canImport(AppKit)
 import SwiftUI
 
 extension Scene {

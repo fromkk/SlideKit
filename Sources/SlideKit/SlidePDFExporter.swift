@@ -5,7 +5,7 @@
 //  Created by Junnosuke Matsumoto on 2022/12/18.
 //
 
-#if os(macOS)
+#if canImport(AppKit)
 import SwiftUI
 
 @available(macOS 13.0, *)

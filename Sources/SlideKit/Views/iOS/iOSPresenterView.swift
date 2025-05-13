@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if os(iOS)
+#if canImport(UIKit)
 public struct iOSPresenterView<Content>: View where Content: View {
 
     private let slideSize: CGSize
@@ -43,7 +43,9 @@ public struct iOSPresenterView<Content>: View where Content: View {
         .ignoresSafeArea()
     }
 
+    @ViewBuilder
     private var menuButton: some View {
+      if #available(tvOS 17, *) {
         Menu {
             backToFirstButton
             externalDisplayButton
@@ -53,6 +55,7 @@ public struct iOSPresenterView<Content>: View where Content: View {
                 .scaledToFit()
         }
         .frame(width: 40, height: 40)
+      }
     }
 
     private var externalDisplayButton: some View {
