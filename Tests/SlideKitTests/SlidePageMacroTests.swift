@@ -28,8 +28,6 @@ final class SlideMacroTests: XCTestCase {
 
                 @Environment(\\.observableObjectContainer) private var container
 
-                @Environment(\\.isExportingPDF) private var isExportingPDF
-
                 func phase(_ phase: State) -> Self {
                     let store: PhasedStateStore<State> = container.resolve {
                         PhasedStateStore(phase)
@@ -62,8 +60,6 @@ final class SlideMacroTests: XCTestCase {
             struct FooSlide: View {
 
                 public typealias SlidePhasedState = SimplePhasedState
-
-                @Environment(\\.isExportingPDF) private var isExportingPDF
             }
 
             extension FooSlide: Slide {
