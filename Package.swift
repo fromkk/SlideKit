@@ -35,6 +35,7 @@ let package = Package(
             name: "SlideKitTests",
             dependencies: [
                 "SlideKit",
+                "SlideKitMacros",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax")
             ]
         )

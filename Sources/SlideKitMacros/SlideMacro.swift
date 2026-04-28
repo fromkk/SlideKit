@@ -37,7 +37,8 @@ public struct SlideMacro: ExtensionMacro, MemberMacro {
         }
         if phasedVariables.isEmpty {
             return [
-                "public typealias SlidePhasedState = SimplePhasedState"
+                "public typealias SlidePhasedState = SimplePhasedState",
+                "@Environment(\\.isExportingPDF) private var isExportingPDF"
             ]
         }
         else if phasedVariables.count == 1 {
@@ -48,6 +49,9 @@ public struct SlideMacro: ExtensionMacro, MemberMacro {
                 "public typealias Phase = PhaseWrapper",
                 """
                 @Environment(\\.observableObjectContainer) private var container
+                """,
+                """
+                @Environment(\\.isExportingPDF) private var isExportingPDF
                 """,
                 """
                 func phase(_ phase: \(raw: type)) -> Self {
