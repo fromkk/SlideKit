@@ -43,7 +43,11 @@ public enum SlidePDFExporter {
 
             slideIndexController.backToFirst()
             repeat {
-                let renderer = ImageRenderer(content: view.frame(width: slideSize.width, height: slideSize.height))
+                let renderer = ImageRenderer(
+                    content: view
+                        .environment(\.isExportingPDF, true)
+                        .frame(width: slideSize.width, height: slideSize.height)
+                )
                 renderer.render { size, renderer in
                     let options: [CFString: Any] = [
                         kCGPDFContextMediaBox: CGRect(origin: .zero, size: size )
